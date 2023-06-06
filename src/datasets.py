@@ -23,6 +23,7 @@ class FB15k237_ET(Dataset):
 
         f = open("datasets/FB15K237-ET/ent2classes.pkl", "r+b")
         # note: ID 14496 isn't used in dataset
+        # FIXME it is, in fact?
         types = [ shift(cs, 14497) for cs in load(f).values() ]
         f.close()
 
