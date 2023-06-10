@@ -5,23 +5,25 @@ from base.joint_training_loop import JointSLCWATrainingLoop
 
 import octagons
 import octagons_ensemble
+import octagons_dist
 
 # m = octagons.OctagonsModel
-m = octagons_ensemble.OctagonsModel
+# m = octagons_ensemble.OctagonsModel
+m = octagons_dist.OctagonsModel
 
 ds = FB15k237_ET()
 
-dim = 10
+dim = 64
 
 # l = MarginRankingLoss
-# l = NSSALoss
-l = CrossEntropyLoss
+l = NSSALoss
+# l = CrossEntropyLoss
 
 result = pipeline(
     dataset=ds,
     model=m,
     model_kwargs=dict(embedding_dim=dim),
-    training_kwargs=dict(num_epochs=5),
+    training_kwargs=dict(num_epochs=50),
     loss=l,
     training_loop=JointSLCWATrainingLoop
 )
